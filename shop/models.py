@@ -8,6 +8,9 @@ class Category(models.Model):
     title = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(unique=True, blank=True)
 
+    class Meta:
+        verbose_name_plural = "Categories"
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
@@ -59,6 +62,9 @@ class Order(models.Model):
     quantity = models.PositiveIntegerField(default=1)
     product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='orders')
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.name} - {self.product}'
 
 
 class Comment(models.Model):

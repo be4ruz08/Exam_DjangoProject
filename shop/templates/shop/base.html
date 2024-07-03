@@ -8,6 +8,8 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
     <title>{% block title %}Shop Homepage{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="{% static 'shop/assets/favicon.ico' %}"/>
     <!-- Bootstrap icons-->
@@ -40,10 +42,10 @@
             </ul>
             <form class="d-flex" method="get" action="{% url 'home' %}">
                 <input type="hidden" name="sort" value="{{ sort }}">
-                <input type="text" name="search" placeholder="Search..." class="form-control">
-                <button class="btn btn-outline-dark" type="submit">
+                <input type="text" name="search" placeholder="Search..." class="form-control border border-danger">
+                <button class="btn btn-outline-danger ml-2" type="submit">
                     <i class="bi-search-fill me-1"></i>
-                    Search
+                     Search
                 </button>
             </form>
         </div>

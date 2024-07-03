@@ -4,6 +4,7 @@ from django import forms
 from shop.models import Order, Comment
 
 
+
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
@@ -22,3 +23,7 @@ class CommentForm(forms.ModelForm):
             'body': forms.Textarea(attrs={'placeholder': 'Your comment', 'rows': 5}),
         }
 
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=150, required=True, label='Username')
+    email = forms.EmailField(required=True, label='Email')

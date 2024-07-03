@@ -1,0 +1,72 @@
+{#{% extends "shop/base.html" %}#}
+{##}
+{#{% block title %}Login{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#<div class="row justify-content-center">#}
+{#    <div class="col-md-6">#}
+{#        <div class="card mt-5">#}
+{#            <div class="card-header text-center">#}
+{#                <h2>Login</h2>#}
+{#            </div>#}
+{#            <div class="card-body">#}
+{#                <form method="post">#}
+{#                    {% csrf_token %}#}
+{#                    {{ form.non_field_errors }}#}
+{#                    <div class="form-group">#}
+{#                        <label for="username">Username</label>#}
+{#                        <input type="text" name="username" class="form-control" id="username" required>#}
+{#                    </div>#}
+{#                    <div class="form-group">#}
+{#                        <label for="email">Email</label>#}
+{#                        <input type="email" name="email" class="form-control" id="email" required>#}
+{#                    </div>#}
+{#                    <button type="submit" class="btn btn-primary btn-block">Login</button>#}
+{#                </form>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+{#{% endblock %}#}
+
+
+{% extends 'shop/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header text-center" style="background-color: #FF6347; color: #FFD700;">
+                    <h2>Login</h2>
+                </div>
+                <div class="card-body" style="background-color: #FFF8DC;">
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        <div class="form-group">
+                            {{ form.username.label_tag }}
+                            {{ form.username }}
+                            {{ form.username.errors }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                            {{ form.email.errors }}
+                        </div>
+                        <button type="submit" class="btn btn-block" style="background-color: #FFD700; color: #FF6347;">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+

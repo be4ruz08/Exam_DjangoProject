@@ -1,9 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
-
+from django.contrib.auth.decorators import login_required
 from shop.models import Product, Category, Order
 from .forms import OrderForm, CommentForm
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+from .forms import LoginForm
 
 
 # Create your views here.
@@ -25,7 +28,6 @@ def product_list(request, category_slug=None):
 def products(request):
     search_query = request.GET.get('search')
     product_list = Product.objects.all()
-
     if search_query:
         product_list = product_list.filter(
             Q(full_name__icontains=search_query) | Q(address__icontains=search_query))
@@ -87,6 +89,7 @@ def home(request):
 
     products = Product.objects.all()
 
+
     if category_slug:
         products = products.filter(category__slug=category_slug)
 
@@ -109,4 +112,18 @@ def home(request):
 
 def about(request):
     return render(request, 'shop/about.html')
+
+
+def login_page(request):
+    form = LoginForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            user = User.objects.create_user(username=username, email=email)
+            login(request, user)
+            return redirect('home')
+
+    return render(request, 'shop/login.html', {'form': form})
+
 

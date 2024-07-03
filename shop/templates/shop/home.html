@@ -121,11 +121,11 @@
 {% block title %}Home - Shop Homepage{% endblock %}
 
 {% block header %}
-<header class="bg-dark py-5">
+<header class="bg-light py-5">
     <div class="container px-4 px-lg-5 my-5">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Shop in style</h1>
-            <p class="lead fw-normal text-white-50 mb-0">With this shop homepage template</p>
+        <div class="text-center">
+            <h1 class="display-4 fw-bolder text-danger">Shop in Style</h1>
+            <p class="lead fw-normal text-muted mb-0">With This Shop Homepage Template</p>
         </div>
     </div>
 </header>
@@ -134,17 +134,17 @@
 {% block content %}
 <div class="container mt-5">
     <div class="text-left">
-        <h3>Filter by</h3>
+        <h3 class="text-danger">Filter by</h3>
     </div>
     <div class="row">
         <div class="col-1">
-            <a class="btn btn-outline-dark mt-auto {% if sort == 'expensive' %}active{% endif %}" href="?sort=expensive&category={{ request.GET.category }}"> Expensive </a>
+            <a class="btn btn-outline-danger mt-auto {% if sort == 'expensive' %}active{% endif %}" href="?sort=expensive&category={{ request.GET.category }}"> Expensive </a>
         </div>
         <div class="col-1">
-            <a class="btn btn-outline-dark mt-auto {% if sort == 'cheap' %}active{% endif %}" href="?sort=cheap&category={{ request.GET.category }}"> Cheap </a>
+            <a class="btn btn-outline-danger mt-auto {% if sort == 'cheap' %}active{% endif %}" href="?sort=cheap&category={{ request.GET.category }}"> Cheap </a>
         </div>
         <div class="col-1">
-            <a class="btn btn-outline-dark mt-auto {% if sort == 'new' %}active{% endif %}" href="?sort=new&category={{ request.GET.category }}"> News </a>
+            <a class="btn btn-outline-danger mt-auto {% if sort == 'new' %}active{% endif %}" href="?sort=new&category={{ request.GET.category }}"> New </a>
         </div>
     </div>
 </div>
@@ -153,7 +153,7 @@
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             {% for product in products %}
                 <div class="col mb-5">
-                    <div class="card h-100">
+                    <div class="card h-100 shadow">
                         <!-- Product image-->
                         <img class="card-img-top"
                              src="{{ product.image.url }}" alt="..." style="height: 300px; width: 100%; object-fit: cover; object-position: center;"/>
@@ -161,16 +161,15 @@
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <!-- Product name-->
-                                <h5 class="fw-bolder">{{ product.name }}</h5>
+                                <h5 class="fw-bolder text-danger">{{ product.name }}</h5>
                                 <!-- Product price-->
                                 ${{ product.discounted_price }} - ${{ product.price }}
                             </div>
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                                                        href="{% url 'product_detail' product.slug %}">View
-                                product</a></div>
+                            <div class="text-center"><a class="btn btn-warning mt-auto text-white"
+                                                        href="{% url 'product_detail' product.slug %}">View Product</a></div>
                         </div>
                     </div>
                 </div>
@@ -179,3 +178,5 @@
     </div>
 </section>
 {% endblock %}
+
+

@@ -1,21 +1,22 @@
-{% load static %}
+{% extends "shop/base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Place an Order</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container mt-5">
-        <h2>Place an Order</h2>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary mt-3">Submit Order</button>
-        </form>
+{% block title %}Order{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card mt-5 shadow-lg">
+            <div class="card-header text-center" style="background-color: #FF6347; color: #FFD700;">
+                <h2>Order Form</h2>
+            </div>
+            <div class="card-body" style="background-color: #FFF8DC;">
+                <form method="post" action="{% url 'order_add' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-block" style="background-color: #FFD700; color: #FF6347;">Submit Order</button>
+                </form>
+            </div>
+        </div>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}
